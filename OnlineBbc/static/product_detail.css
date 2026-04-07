@@ -1,0 +1,174 @@
+/* =========================================
+   MAHSULOT BATAFSIL SAHIFASI (DETAIL PAGE)
+   ========================================= */
+
+.product-detail-container {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Rasm qismi */
+.product-image-section {
+    flex: 1;
+    width: 100%;
+    border-radius: 20px;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    background-color: var(--sidebar-bg); /* Rasm orqasiga ozgina ajralib turuvchi fon */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.product-image-section img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Ma'lumotlar qismi */
+.product-info-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.product-title {
+    font-size: 36px;
+    color: var(--text-hover);
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--text-hover);
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.stock-status {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    width: fit-content;
+}
+
+.in-stock {
+    background-color: rgba(163, 151, 133, 0.1);
+    color: var(--text-hover);
+    border: 1px solid var(--border-color);
+}
+
+.out-of-stock {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #ff4d4d;
+    border: 1px solid #ff4d4d;
+}
+
+.product-description {
+    color: var(--text-color);
+    line-height: 1.8;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+/* Tugmalar */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    align-items: center;
+}
+
+.cart-form {
+    flex: 2; /* Savat tugmasi kattaroq bo'ladi */
+}
+
+/* Tugmalar konteyneri */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    align-items: center;
+}
+
+/* Formani kengaytirish */
+.cart-form {
+    flex: 2; /* Savat tugmasi kattaroq bo'ladi */
+}
+
+/* Savatga qo'shish tugmasi */
+.btn-cart {
+    width: 100%;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e5d5be; /* Sizning var(--text-hover) rangiga yaqin */
+    color: #1a1a1a;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(229, 213, 190, 0.2);
+}
+
+.btn-cart:hover {
+    transform: translateY(-5px);
+    background: #fff;
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
+}
+
+/* Ortga qaytish tugmasi */
+.btn-back {
+    flex: 1; /* Bu tugma biroz kichikroq */
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.btn-back:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #e5d5be;
+    color: #e5d5be;
+}
+
+/* Mobil versiya uchun */
+@media (max-width: 768px) {
+    .action-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .cart-form, .btn-back {
+        width: 100%;
+        flex: none;
+    }
+    
+    .btn-cart, .btn-back {
+        height: 50px; /* Mobilda biroz ixchamroq */
+    }
+}
+
+

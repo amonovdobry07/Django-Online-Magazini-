@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="main-content" style="display: flex; justify-content: center; align-items: center; min-height: 60vh;">
+    <div style="background: rgba(255, 255, 255, 0.05); padding: 40px; border-radius: 20px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
+        <div style="font-size: 60px; margin-bottom: 20px;">🎉</div>
+        <h2 style="color: white; margin-bottom: 10px;">Rahmat!</h2>
+        <p style="color: #ccc; margin-bottom: 30px;">Buyurtmangiz muvaffaqiyatli qabul qilindi. Tez orada operatorlarimiz bog'lanishadi.</p>
+        <a href="{% url 'base' %}" style="padding: 12px 25px; background: #e5d5be; color: #000; text-decoration: none; border-radius: 10px; font-weight: bold;">Asosiy sahifaga qaytish</a>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,94 @@
+/* Kategoriya navigatsiyasi uchun asosiy o'ram */
+.category-nav {
+    margin: 20px 0 30px 0;
+    padding: 10px 0;
+    width: 100%;
+    /* Mobil qurilmalarda sig'masa, yon tomonga skroll bo'ladi */
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox uchun */
+    -ms-overflow-style: none; /* IE uchun */
+}
+
+/* Skrollbarni yashirish (Chrome, Safari uchun) */
+.category-nav::-webkit-scrollbar {
+    display: none;
+}
+
+/* Ro'yxat uslublari */
+.category-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 20px;
+    display: flex;
+    gap: 12px;
+    /* Katta ekranlarda markazda turishi uchun */
+    justify-content: flex-start; 
+}
+
+/* Tugmalar uslubi (Glassmorphism + Neon) */
+.category-nav a {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.05); /* Yarim shaffof fon */
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 12px; /* Saytingizdagi kartalarga mos burchaklar */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap; /* Matn pastga tushib ketmasligi uchun */
+    backdrop-filter: blur(5px); /* Shisha effekti */
+}
+
+/* Hover (Sichqoncha ustiga kelganda) */
+.category-nav a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Aktiv kategoriya uslubi */
+.category-nav a.active {
+    background: #ffffff; /* Oq fon */
+    color: #000000;    /* Qora matn */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+
+.products-grid .box img {
+    width: 100%;            /* Qutining kengligini to'liq egallaydi */
+    height: 250px;          /* O'zingizga mos balandlikni belgilang (masalan, 250px yoki 300px) */
+    object-fit: cover;      /* Rasmni cho'zmasdan, qutini to'ldirib kesib beradi */
+    display: block;         /* Pastdagi bo'shliqlarni yo'qotadi */
+    border-radius: 12px 12px 0 0; /* Faqat yuqori burchaklarni yumaloq qilish (agar kerak bo'lsa) */
+}
+
+/* Boxning o'zini ham tartibga solamiz (agar CSS-da bo'lmasa) */
+.products-grid .box {
+    overflow: hidden;       /* Rasm burchaklardan chiqib ketmasligi uchun */
+    display: flex;
+    flex-direction: column;
+    position: relative;     /* Overlay to'g'ri chiqishi uchun */
+    border-radius: 12px;
+}
+
+/* --- MOBILE HOLATI --- */
+@media (max-width: 768px) {
+    .category-nav {
+        margin: 15px 0;
+    }
+    
+    .category-nav ul {
+        padding: 0 15px;
+        gap: 10px;
+        justify-content: flex-start; /* Mobilda har doim chapdan boshlanadi */
+    }
+
+    .category-nav a {
+        padding: 8px 16px;
+        font-size: 13px;
+        border-radius: 10px;
+    }
+}

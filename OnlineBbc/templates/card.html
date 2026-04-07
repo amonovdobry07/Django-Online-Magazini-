@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="main-content">
+  <h2 style="margin-bottom: 20px;">Sizning savatchangiz</h2>
+
+  {% if cart_items %}
+  <div class="cart-container">
+    <table border="1" style="width: 100%; border-collapse: collapse; text-align: center;">
+      <thead>
+        <tr style="background-color: #333; color: white;">
+          <th>Rasm</th>
+          <th>Mahsulot</th>
+          <th>Narxi</th>
+          <th>Miqdori</th>
+          <th>Jami</th>
+          <th>O'chirish</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart_items %}
+        <tr>
+          <td>
+            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}"
+              style="width: 50px; height: 50px; object-fit: cover;">
+          </td>
+          <td>{{ item.product.name }}</td>
+          <td>{{ item.product.price }}$</td>
+          <td>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+              <form action="{% url 'change_quantity' item.id 'minus' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" style="cursor: pointer;">-</button>
+              </form>
+
+              <span>{{ item.quantity }}</span>
+
+              <form action="{% url 'change_quantity' item.id 'plus' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" style="cursor: pointer;">+</button>
+              </form>
+            </div>
+          </td>
+          <td>{{ item.total_price }}$</td>
+          <td>
+            <form action="{% url 'delete_item' item.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit"
+                style="color: red; border: none; background: none; cursor: pointer; font-weight: bold;">
+                O'chirish
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div style="margin-top: 30px; text-align: right; padding-right: 20px;">
+      <h3 style="color: white;">Umumiy summa: <span style="color: #ffcc00;">{{ total_sum }}$</span></h3>
+      <form action="{% url 'checkout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit"
+          style="padding: 12px 30px; background: #28a745; color: white; border: none; border-radius: 15px; cursor: pointer; font-size: 16px; font-weight: bold; transition: 0.3s;">
+          ✅ Buyurtmani rasmiylashtirish
+        </button>
+      </form>
+    </div>
+  </div>
+  {% else %}
+  <div style="text-align: center; margin-top: 50px;">
+    <h3 style="color: #ccc;">Savatchangiz hozircha bo'sh :(</h3>
+    <a href="{% url 'base' %}" style="color: #ffcc00; text-decoration: none; font-size: 18px;">Xaridni boshlash</a>
+  </div>
+  {% endif %}
+</main>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html'%} 
+{% block content %}
+
+
+
+<main class="main-content">
+    <div class="category-nav">
+        <ul>
+            {%  for item in subcategories %}
+            <li>
+              <a href="{{item.get_absolute_url}}">{{item.name}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+  <div class="products-grid">
+    {% for product in category.categories.all %}
+    <div class="box">
+      <img src="{{product.image.url}}" alt="{{product.name}}" />
+
+      <div class="overlay">
+        <div class="text_field">
+          <h3>{{product.name}}</h3>
+
+          <p>{{product.description|truncatechars:80}}</p>
+
+          <b>{{product.price}}$</b>
+
+          <a href="{{product.get_absolute_url}}">
+            <button>Batafsil</button>
+          </a>
+          <div class="add-card-container">
+            <form method="post" action="{% url 'add-to-card' %}">
+              {% csrf_token %}
+              <input type="hidden" name="product_id" value="{{ product.id }}" />
+              <button type="submit" class="add-to-card-btn">
+                Savatga qo'shish
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+</main>
+
+{% endblock%}

@@ -1,0 +1,117 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'product_detail.css' %}" />
+  <link rel="stylesheet" href="{% static 'category_detail.css' %}" />
+  <title>Amonoff || Store</title>
+</head>
+
+<body>
+  <header class="mobile-header">
+    <a href="{% url 'base' %}" style="cursor: pointer; text-decoration: none">
+      <div class="mobile-logo">Amonoff</div>
+    </a>
+    <button class="hamburger-btn" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <div class="app-container">
+    <nav class="sidebar" id="sidebar">
+      <div class="logo desktop-logo">
+        <a href="{% url 'base' %}" style="cursor: pointer; text-decoration: none">
+          <div style="color: white; font-size: 24px; font-weight: bold;">Amonoff</div>
+        </a>
+      </div>
+
+      <div class="links">
+        <ul>
+          {% for links in categories %}
+          <li>
+            <a href="{{links.get_absolute_url}}">{{links.name}}</a>
+          </li>
+          {% endfor %}
+
+          <hr style="border: 0.5px solid #444; margin: 10px 0;">
+          <li>
+            <a href="{% url 'cart_view' %}" style="color: #ffcc00;">🛒 Savatcha</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  {% block content %}
+
+  <main class="main-content">
+    <div class="products-grid">
+      {% for product in products %}
+      <div class="box">
+        <img src="{{product.image.url}}" class="carousel-img active" />
+
+        {% if product.image1 %}
+        <img src="{{product.image1.url}}" class="carousel-img" />
+        {% endif %} {% if product.image2 %}
+        <img src="{{product.image2.url}}" class="carousel-img" />
+        {% endif %}
+
+        <div class="overlay">
+          <div class="text_field">
+            <h3>{{product.name}}</h3>
+
+            <p>{{product.description|truncatechars:80}}</p>
+
+            <b>{{product.price}}$</b>
+
+            <a href="{{product.get_absolute_url}}">
+              <button>Batafsil</button>
+            </a>
+          </div>
+          <div class="add-card-container">
+            <form method="post" action="{% url 'add-to-card' %}">
+              {% csrf_token %}
+              <input type="hidden" name="product_id" value="{{ product.id }}" />
+              <button type="submit" class="add-to-card-btn">
+                Savatga qo'shish
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {% endfor %}
+    </div>
+  </main>
+
+  {% endblock %}
+
+  <script>
+    const menyuToggle = document.getElementById("menu-toggle");
+    const sidebar = document.getElementById("sidebar");
+
+    menyuToggle.addEventListener("click", () => {
+      sidebar.classList.toggle("active");
+    });
+
+    document.querySelectorAll(".box").forEach((box) => {
+      const images = box.querySelectorAll(".carousel-img");
+      let index = 0;
+
+      setInterval(() => {
+        images[index].classList.remove("active");
+        index = (index + 1) % images.length;
+        images[index].classList.add("active");
+      }, 4000);
+    });
+  </script>
+</body>
+
+</html>
